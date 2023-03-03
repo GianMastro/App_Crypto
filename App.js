@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { StyleSheet, Button, TextInput, Text, View, SafeAreaView, FlatList, Modal, Pressable } from 'react-native';
 
-
 const monedas = () => {
 
-    const [itemText, setItemText] = useState('');
-    const [items, setItems] = useState([{id: 1, value: 'wb'}]);
+    const [textoItem, setItemText] = useState('');
+    const [lista, setItems] = useState([{id: 1, value: 'Bitcoin'}]);
 
     const onChangeText = (text) => {
       setItemText(text);
@@ -37,7 +36,7 @@ const monedas = () => {
             placeholder='Introduzca un nuevo item'
             style={styles.inputLista}
             onChangeText={onChangeText}
-            value={itemText}
+            value={textoItem}
           />
           <Button
             title='Agregar'
@@ -46,13 +45,13 @@ const monedas = () => {
         </View>
         <FlatList
           style={styles.lista}
-          data={items}
+          data={lista}
           renderItem={(itemData) => { 
             <Pressable style={styles.contentlista} onPress={()=> {
               selectItem(itemData.item);
               setModalVisible(true);
             }}>
-              <Text style={styles.itemList}> { itemData.item.value } </Text>
+              <Text style={styles.textoItem}> { itemData.item.value } </Text>
             </Pressable> 
           }}
         />
