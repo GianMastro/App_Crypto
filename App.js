@@ -4,14 +4,14 @@ import { StyleSheet, Button, TextInput, Text, View, SafeAreaView, FlatList, Moda
 const monedas = () => {
 
     const [textoItem, setItemText] = useState('');
-    const [lista, setItems] = useState([{id: 1, value: 'Bitcoin'}]);
+    const [lista, setItems] = useState([]);
 
     const onChangeText = (text) => {
       setItemText(text);
     }
 
     const addItem = () => {
-      setItems((oldArray) => [...oldArray, {id: Date.now(), value: itemText}]);
+      setItems((oldArray) => [...oldArray, {id: Date.now(), value: textoItem}]);
       setItemText('');
     }
 
@@ -47,12 +47,14 @@ const monedas = () => {
           style={styles.lista}
           data={lista}
           renderItem={(itemData) => { 
-            <Pressable style={styles.contentlista} onPress={()=> {
-              selectItem(itemData.item);
-              setModalVisible(true);
-            }}>
-              <Text style={styles.textoItem}> { itemData.item.value } </Text>
-            </Pressable> 
+            return(
+              <Pressable style={styles.contentlista} onPress={()=> {
+                selectItem(itemData.item);
+                setModalVisible(true);
+              }}>
+                <Text style={styles.textoItem}> { itemData.item.value } </Text>
+              </Pressable>
+            );
           }}
         />
         <Modal
